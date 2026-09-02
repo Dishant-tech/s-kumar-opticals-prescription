@@ -1680,3 +1680,4 @@ window.showSettings = showSettings;
 window.printCurrentPrescription = printCurrentPrescription;
 window.editCustomer = editCustomer;
 window.deleteCustomer = deleteCustomer;
+window.searchCustomers = searchCustomers;
