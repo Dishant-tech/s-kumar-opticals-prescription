@@ -707,16 +707,30 @@ function clearPrescription() {
 ========================= */
 
 function searchCustomers() {
+
     const searchInput =
         document.getElementById("searchInput");
+
+    if (!searchInput) return;
 
     const value =
         searchInput.value
             .toLowerCase()
             .trim();
 
+    const customerList =
+        document.getElementById("customerList");
+
     if (!value) {
         displayCustomers(customers);
+
+        if (customerList) {
+            customerList.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
+        }
+
         return;
     }
 
@@ -724,20 +738,29 @@ function searchCustomers() {
         customers.filter(customer => {
 
             const name =
-                String(
-                    customer.name || ""
-                ).toLowerCase();
+                String(customer.name || "")
+                    .toLowerCase();
 
             const mobile =
-                String(
-                    customer.mobile || ""
-                ).toLowerCase();
+                String(customer.mobile || "")
+                    .toLowerCase();
 
             return (
                 name.includes(value) ||
                 mobile.includes(value)
             );
         });
+
+    displayCustomers(results);
+
+    // Automatically show search results
+    if (customerList) {
+        customerList.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+        });
+    }
+}
 
     displayCustomers(results);
 }
