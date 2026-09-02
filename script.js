@@ -762,10 +762,6 @@ function searchCustomers() {
     }
 }
 
-    displayCustomers(results);
-
-
-
 /* =========================
    DISPLAY CUSTOMERS
 ========================= */
