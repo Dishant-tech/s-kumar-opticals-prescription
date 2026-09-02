@@ -1631,23 +1631,7 @@ function setPrescriptionSign(fieldId, sign) {
 
     input.focus();
 }
-function toggleSign(inputId) {
-    const input = document.getElementById(inputId);
 
-    if (!input) return;
-
-    let value = input.value.trim();
-
-    if (value === "") {
-        input.value = "-";
-    } else if (value.startsWith("-")) {
-        input.value = value.substring(1);
-    } else {
-        input.value = "-" + value;
-    }
-
-    input.focus();
-}
 window.toggleSign = function(inputId) {
     const input = document.getElementById(inputId);
 
