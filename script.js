@@ -1633,23 +1633,41 @@ function setPrescriptionSign(fieldId, sign) {
 }
 
 window.toggleSign = function(inputId) {
+
     const input = document.getElementById(inputId);
 
-    if (!input) {
-        console.log("Input not found:", inputId);
-        return;
-    }
+    if (!input) return;
 
-    if (input.value.startsWith("-")) {
-        input.value = input.value.substring(1);
+    let value = input.value.trim();
+
+    // Remove current sign
+
+    const number = value.replace(/^[+-]/, "");
+
+    if (value.startsWith("+")) {
+
+        // + becomes -
+
+        input.value = "-" + number;
+
+    } else if (value.startsWith("-")) {
+
+        // - becomes +
+
+        input.value = "+" + number;
+
     } else {
-        input.value = "-" + input.value;
+
+        // No sign becomes +
+
+        input.value = "+" + number;
+
     }
 
     input.focus();
 
-    // Trigger input event so the software recognizes the change
     input.dispatchEvent(new Event("input", { bubbles: true }));
+
 };
 loadData();
 window.openNewCustomer = openNewCustomer;
