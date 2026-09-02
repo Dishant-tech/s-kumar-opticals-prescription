@@ -1,0 +1,1540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>S Kumar Opticals - Prescription Manager</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header class="header">
+
+    <div class="brand">
+
+        <div class="brand-icon">
+            👓
+        </div>
+
+        <div>
+            <h1>S Kumar Opticals</h1>
+            <p>Prescription Manager</p>
+        </div>
+
+    </div>
+
+
+    <button class="settings-btn"
+            onclick="showSettings()"
+            title="Settings">
+
+        ⚙
+
+    </button>
+
+</header>
+
+
+
+<!-- =========================
+     HOME SCREEN
+========================= -->
+
+<main id="homeScreen"
+      class="screen active">
+
+
+    <!-- HERO -->
+
+    <section class="home-hero">
+
+        <div class="hero-text">
+
+            <div class="welcome-badge">
+                <span>✦</span>
+                Optical Prescription System
+            </div>
+
+            <h2 id="homeGreeting">
+                Welcome!
+            </h2>
+
+            <p>
+                Manage customer prescriptions quickly,
+                securely and effortlessly.
+            </p>
+
+        </div>
+
+
+        <div class="shortcut-hint">
+            <span>⌘</span>
+            <span>K</span>
+            Quick Search
+        </div>
+
+    </section>
+
+
+
+    <!-- SEARCH -->
+
+    <section class="search-section">
+
+        <div class="search-heading">
+
+            <div>
+                <h3>Find a Customer</h3>
+
+                <p>
+                    Search using customer name or mobile number
+                </p>
+            </div>
+
+        </div>
+
+
+        <div class="big-search">
+
+            <div class="search-icon">
+                🔍
+            </div>
+
+            <input
+                type="text"
+                id="searchInput"
+                placeholder="Search customer name or mobile number..."
+                oninput="searchCustomers()"
+            >
+
+            <div class="search-key">
+                Search
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ACTION + STATS -->
+
+    <section class="home-grid">
+
+
+        <!-- NEW CUSTOMER -->
+
+        <div class="new-customer-card">
+
+            <div class="new-card-top">
+
+                <div class="new-icon">
+                    +
+                </div>
+
+                <div class="new-arrow">
+                    →
+                </div>
+
+            </div>
+
+
+            <div class="new-card-content">
+
+                <h3>New Customer</h3>
+
+                <p>
+                    Create a customer profile and
+                    add a new prescription.
+                </p>
+
+            </div>
+
+
+            <button
+                class="new-customer-action"
+                onclick="openNewCustomer()">
+
+                Create Customer
+
+                <span>→</span>
+
+            </button>
+
+        </div>
+
+
+
+        <!-- STATISTICS -->
+
+        <div class="stats-panel">
+
+            <div class="stats-header">
+
+                <h3>Overview</h3>
+
+                <span>Live Data</span>
+
+            </div>
+
+
+            <div class="stats-grid">
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon customers-icon">
+                        👥
+                    </div>
+
+                    <div>
+
+                        <strong id="totalCustomers">
+                            0
+                        </strong>
+
+                        <p>
+                            Customers
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon prescription-icon">
+                        📄
+                    </div>
+
+                    <div>
+
+                        <strong id="totalPrescriptions">
+                            0
+                        </strong>
+
+                        <p>
+                            Prescriptions
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+
+                <div class="stat-card stat-full">
+
+                    <div class="stat-icon month-icon">
+                        📅
+                    </div>
+
+                    <div>
+
+                        <strong id="monthPrescriptions">
+                            0
+                        </strong>
+
+                        <p>
+                            Prescriptions this month
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- RECENT CUSTOMERS -->
+
+    <section class="recent-customers-section">
+
+
+        <div class="recent-header">
+
+            <div>
+
+                <div class="section-label">
+                    CUSTOMERS
+                </div>
+
+                <h2>
+                    Recent Customers
+                </h2>
+
+                <p>
+                    Quickly access customer records
+                    and prescription history.
+                </p>
+
+            </div>
+
+
+            <div class="customer-count-badge">
+                Customer Records
+            </div>
+
+        </div>
+
+
+        <div id="customerList"
+             class="customer-list">
+
+            <div class="empty-state">
+
+                <div class="empty-icon">
+                    👤
+                </div>
+
+                <h3>
+                    No customers yet
+                </h3>
+
+                <p>
+                    Create your first customer
+                    to get started.
+                </p>
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+    <!-- FOOTER -->
+
+    <footer class="footer">
+
+        <div>
+            <strong>S Kumar Opticals</strong>
+
+            <span>
+                • Prescription Management System
+            </span>
+        </div>
+
+
+        <div class="footer-status">
+
+            <span class="status-dot"></span>
+
+            System Ready
+
+        </div>
+
+    </footer>
+
+
+</main>
+
+
+
+<!-- =========================
+     NEW CUSTOMER SCREEN
+========================= -->
+
+<main id="customerScreen"
+      class="screen">
+
+
+    <div class="page-top">
+
+        <button class="back-button"
+                onclick="goHome()">
+
+            ←
+
+        </button>
+
+
+        <div>
+
+            <div class="section-label">
+                CUSTOMER
+            </div>
+
+            <h2>
+                New Customer
+            </h2>
+
+            <p>
+                Enter customer details to create
+                a new profile.
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="form-layout">
+
+
+        <section class="form-card">
+
+            <div class="form-card-header">
+
+                <div class="card-icon">
+                    👤
+                </div>
+
+                <div>
+
+                    <h3>
+                        Customer Information
+                    </h3>
+
+                    <p>
+                        Basic details about the customer
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="form-grid">
+
+
+                <div class="form-group full-width">
+
+                    <label>
+                        Customer Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="customerName"
+                        placeholder="Enter full name"
+                    >
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label>
+                        Mobile Number
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="customerMobile"
+                        placeholder="Enter mobile number"
+                    >
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label>
+                        Age
+                    </label>
+
+                    <input
+                        type="number"
+                        id="customerAge"
+                        placeholder="Optional"
+                    >
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label>
+                        Gender
+                    </label>
+
+                    <select id="customerGender">
+
+                        <option value="">
+                            Select (Optional)
+                        </option>
+
+                        <option value="Male">
+                            Male
+                        </option>
+
+                        <option value="Female">
+                            Female
+                        </option>
+
+                        <option value="Other">
+                            Other
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+            </div>
+
+
+
+            <div class="form-actions">
+
+                <button
+                    class="secondary-button"
+                    onclick="goHome()">
+
+                    Cancel
+
+                </button>
+
+
+                <button
+                    class="primary-button"
+                    onclick="saveCustomer()">
+
+                    Continue to Prescription
+                    <span>→</span>
+
+                </button>
+
+            </div>
+
+
+        </section>
+
+
+    </div>
+
+
+</main>
+
+
+
+<!-- =========================
+     PRESCRIPTION SCREEN
+========================= -->
+
+<main id="prescriptionScreen"
+      class="screen">
+
+
+    <div class="page-top">
+
+        <button class="back-button"
+                onclick="showCustomer()">
+
+            ←
+
+        </button>
+
+
+        <div>
+
+            <div class="section-label">
+                PRESCRIPTION
+            </div>
+
+            <h2>
+                New Prescription
+            </h2>
+
+            <p>
+                Enter prescription values.
+                All fields are optional.
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- CUSTOMER STRIP -->
+
+    <div class="active-customer-strip">
+
+        <div class="active-customer-avatar">
+            👤
+        </div>
+
+        <div>
+
+            <strong id="prescriptionCustomerName">
+                Customer
+            </strong>
+
+            <p id="prescriptionCustomerMobile">
+                Mobile Number
+            </p>
+
+        </div>
+
+
+        <div class="prescription-date">
+
+            📅
+
+            <span>
+                Today's Prescription
+            </span>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- EYE PRESCRIPTION -->
+
+    <section class="prescription-card">
+
+
+        <div class="prescription-card-header">
+
+            <div>
+
+                <div class="section-label">
+                    REFRACTION
+                </div>
+
+                <h3>
+                    Eye Prescription
+                </h3>
+
+            </div>
+
+
+            <span class="optional-badge">
+                All fields optional
+            </span>
+
+        </div>
+
+
+
+        <div class="eye-grid">
+
+
+            <!-- RIGHT EYE -->
+
+            <div class="eye-card right-eye">
+
+                <div class="eye-header">
+
+                    <div class="eye-circle">
+                        R
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Right Eye
+                        </h3>
+
+                        <span>
+                            OD
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="eye-fields">
+
+
+                    <div class="eye-field">
+
+                        <label>SPH</label>
+
+                      <input
+    type="text"
+    inputmode="decimal"
+    id="rightSPH"
+    placeholder="0.00"
+>
+                    </div>
+
+
+                    <div class="eye-field">
+
+                        <label>CYL</label>
+
+                      <input
+    type="text"
+    inputmode="decimal"
+    id="rightCYL"
+    placeholder="0.00"
+>
+
+                    </div>
+
+
+                    <div class="eye-field">
+
+                        <label>AXIS</label>
+
+                      <input
+    type="text"
+    inputmode="decimal"
+    id="rightAXIS"
+    placeholder="0.00"
+>
+                    </div>
+
+
+                    <div class="eye-field">
+
+                        <label>ADD</label>
+
+                       <input
+    type="text"
+    inputmode="decimal"
+    id="rightADD"
+    placeholder="0.00"
+>
+
+                    </div>
+
+
+                    <div class="eye-field full-eye-field">
+
+                        <label>PRISM</label>
+
+                      <input
+    type="text"
+    inputmode="decimal"
+    id="rightPRISM"
+    placeholder="0.00"
+>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+
+            <!-- LEFT EYE -->
+
+            <div class="eye-card left-eye">
+
+                <div class="eye-header">
+
+                    <div class="eye-circle">
+                        L
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Left Eye
+                        </h3>
+
+                        <span>
+                            OS
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="eye-fields">
+
+
+                    <div class="eye-field">
+
+                        <label>SPH</label>
+
+                      <input
+
+    type="text"
+
+    inputmode="decimal"
+
+    id="leftSPH"
+
+    placeholder="0.00"
+
+>
+
+                    </div>
+
+
+                    <div class="eye-field">
+
+                        <label>CYL</label>
+
+                      <input
+
+    type="text"
+
+    inputmode="decimal"
+
+    id="leftCYL"
+
+    placeholder="0.00"
+
+>
+
+                    </div>
+
+
+                    <div class="eye-field">
+
+                        <label>AXIS</label>
+
+                      <input
+
+    type="text"
+
+    inputmode="decimal"
+
+    id="leftAXIS"
+
+    placeholder="0.00"
+
+>
+
+                    </div>
+
+
+                    <div class="eye-field">
+
+                        <label>ADD</label>
+
+                      <input
+
+    type="text"
+
+    inputmode="decimal"
+
+    id="leftADD"
+
+    placeholder="0.00"
+
+>
+
+                    </div>
+
+
+                    <div class="eye-field full-eye-field">
+
+                        <label>PRISM</label>
+
+                      <input
+
+    type="text"
+
+    inputmode="decimal"
+
+    id="leftPRISM"
+
+    placeholder="0.00"
+
+>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- ADDITIONAL DETAILS -->
+
+    <section class="additional-card">
+
+        <div class="prescription-card-header">
+
+            <div>
+
+                <div class="section-label">
+                    ADDITIONAL
+                </div>
+
+                <h3>
+                    Additional Details
+                </h3>
+
+            </div>
+
+        </div>
+
+
+        <div class="additional-grid">
+
+
+            <div class="form-group">
+
+                <label>
+                    Distance VA
+                </label>
+
+                <input
+                    type="text"
+                    id="distanceVA"
+                    placeholder="Optional"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Near VA
+                </label>
+
+                <input
+                    type="text"
+                    id="nearVA"
+                    placeholder="Optional"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Doctor / Clinic
+                </label>
+
+                <input
+                    type="text"
+                    id="doctor"
+                    placeholder="Optional"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Lens Type
+                </label>
+
+                <input
+                    type="text"
+                    id="lensType"
+                    placeholder="Optional"
+                >
+
+            </div>
+
+
+            <div class="form-group full-width">
+
+                <label>
+                    Remarks
+                </label>
+
+                <textarea
+                    id="remarks"
+                    placeholder="Add any additional notes..."
+                ></textarea>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+
+    <div class="prescription-actions">
+
+        <button
+            class="secondary-button"
+            onclick="showCustomer()">
+
+            Cancel
+
+        </button>
+
+
+        <button
+            class="save-prescription-button"
+            onclick="savePrescription()">
+
+            Save Prescription
+            <span>✓</span>
+
+        </button>
+
+    </div>
+
+
+</main>
+
+
+
+<!-- =========================
+     CUSTOMER HISTORY SCREEN
+========================= -->
+
+<main id="historyScreen"
+      class="screen">
+
+
+    <div class="page-top">
+
+        <button class="back-button"
+                onclick="goHome()">
+
+            ←
+
+        </button>
+
+
+        <div>
+
+            <div class="section-label">
+                CUSTOMER PROFILE
+            </div>
+
+            <h2 id="historyCustomerName">
+                Customer Name
+            </h2>
+
+            <p id="historyCustomerInfo">
+                Customer Information
+            </p>
+
+        </div>
+
+
+     <div class="top-actions">
+
+    <button
+        class="edit-customer-button"
+        onclick="editCustomer()">
+
+        ✏️ Edit Customer
+
+    </button>
+
+    <button
+        class="delete-customer-button"
+        onclick="deleteCustomer()">
+
+        🗑 Delete
+
+    </button>
+
+    <button
+        class="top-primary-button"
+        onclick="newPrescription()">
+
+        + New Prescription
+
+    </button>
+
+</div>
+
+    </div>
+
+
+
+    <!-- CUSTOMER PROFILE CARD -->
+
+    <div class="customer-profile-card">
+
+        <div class="profile-main">
+
+            <div class="profile-avatar">
+                👤
+            </div>
+
+            <div>
+
+                <h3 id="prescriptionCustomerName2">
+                    Customer
+                </h3>
+
+               <p id="profileCustomerInfo">
+                    Customer Details
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="profile-status">
+
+            <span></span>
+
+            Active Customer
+
+        </div>
+
+    </div>
+
+
+
+    <!-- HISTORY -->
+
+    <section class="history-section">
+
+        <div class="history-section-header">
+
+            <div>
+
+                <div class="section-label">
+                    RECORDS
+                </div>
+
+                <h2>
+                    Prescription History
+                </h2>
+
+                <p>
+                    View and manage previous prescriptions.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div id="historyList"
+             class="history-list">
+
+        </div>
+
+
+    </section>
+
+
+</main>
+<!-- =========================
+     PRESCRIPTION PREVIEW SCREEN
+========================= -->
+
+<main id="previewScreen"
+      class="screen">
+
+    <div class="page-top">
+
+        <button class="back-button"
+                onclick="showCustomer()">
+
+            ←
+
+        </button>
+
+        <div>
+
+            <div class="section-label">
+                PRESCRIPTION RECORD
+            </div>
+
+            <h2>
+                Prescription Details
+            </h2>
+
+            <p>
+                View complete prescription information
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- PRESCRIPTION PAPER -->
+
+    <section class="preview-paper">
+
+        <!-- HEADER -->
+
+        <div class="preview-header">
+
+            <div class="preview-brand">
+
+                <div class="preview-logo">
+                    👓
+                </div>
+
+                <div>
+
+                    <h2>
+                        S Kumar Opticals
+                    </h2>
+
+                    <p>
+                        Optical Prescription
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="preview-date">
+
+                <span>
+                    PRESCRIPTION DATE
+                </span>
+
+                <strong id="previewDate">
+                    --
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <!-- CUSTOMER DETAILS -->
+
+        <div class="preview-customer">
+
+            <div class="preview-customer-avatar">
+                👤
+            </div>
+
+            <div>
+
+                <span>
+                    CUSTOMER
+                </span>
+
+                <h3 id="previewCustomerName">
+                    Customer Name
+                </h3>
+
+                <p id="previewCustomerMobile">
+                    Mobile Number
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- EYE PRESCRIPTION -->
+
+        <div class="preview-section-title">
+
+            <span>
+                REFRACTION DETAILS
+            </span>
+
+            <h3>
+                Eye Prescription
+            </h3>
+
+        </div>
+
+
+        <div class="preview-table-wrapper">
+
+            <table class="preview-table">
+
+                <thead>
+
+                    <tr>
+                        <th>
+                            EYE
+                        </th>
+
+                        <th>
+                            SPH
+                        </th>
+
+                        <th>
+                            CYL
+                        </th>
+
+                        <th>
+                            AXIS
+                        </th>
+
+                        <th>
+                            ADD
+                        </th>
+
+                        <th>
+                            PRISM
+                        </th>
+                    </tr>
+
+                </thead>
+
+
+                <tbody>
+
+                    <tr>
+
+                        <td class="eye-name">
+
+                            <div class="table-eye-icon">
+                                R
+                            </div>
+
+                            <div>
+                                <strong>
+                                    Right Eye
+                                </strong>
+
+                                <span>
+                                    OD
+                                </span>
+                            </div>
+
+                        </td>
+
+                        <td id="previewRightSPH">
+                            —
+                        </td>
+
+                        <td id="previewRightCYL">
+                            —
+                        </td>
+
+                        <td id="previewRightAXIS">
+                            —
+                        </td>
+
+                        <td id="previewRightADD">
+                            —
+                        </td>
+
+                        <td id="previewRightPRISM">
+                            —
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <td class="eye-name">
+
+                            <div class="table-eye-icon left">
+                                L
+                            </div>
+
+                            <div>
+                                <strong>
+                                    Left Eye
+                                </strong>
+
+                                <span>
+                                    OS
+                                </span>
+                            </div>
+
+                        </td>
+
+                        <td id="previewLeftSPH">
+                            —
+                        </td>
+
+                        <td id="previewLeftCYL">
+                            —
+                        </td>
+
+                        <td id="previewLeftAXIS">
+                            —
+                        </td>
+
+                        <td id="previewLeftADD">
+                            —
+                        </td>
+
+                        <td id="previewLeftPRISM">
+                            —
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+        <!-- ADDITIONAL DETAILS -->
+
+        <div class="preview-section-title additional-preview-title">
+
+            <span>
+                ADDITIONAL INFORMATION
+            </span>
+
+            <h3>
+                Additional Details
+            </h3>
+
+        </div>
+
+
+        <div class="preview-details-grid">
+
+            <div class="preview-detail-box">
+
+                <span>
+                    Distance VA
+                </span>
+
+                <strong id="previewDistanceVA">
+                    —
+                </strong>
+
+            </div>
+
+
+            <div class="preview-detail-box">
+
+                <span>
+                    Near VA
+                </span>
+
+                <strong id="previewNearVA">
+                    —
+                </strong>
+
+            </div>
+
+
+            <div class="preview-detail-box">
+
+                <span>
+                    Doctor / Clinic
+                </span>
+
+                <strong id="previewDoctor">
+                    —
+                </strong>
+
+            </div>
+
+
+            <div class="preview-detail-box">
+
+                <span>
+                    Lens Type
+                </span>
+
+                <strong id="previewLensType">
+                    —
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <!-- REMARKS -->
+
+        <div class="preview-remarks">
+
+            <span>
+                REMARKS
+            </span>
+
+            <p id="previewRemarks">
+                No remarks added.
+            </p>
+
+        </div>
+
+
+        <!-- FOOTER -->
+
+        <div class="preview-footer">
+
+            <span>
+                S Kumar Opticals • Prescription Record
+            </span>
+
+            <span>
+                Generated digitally
+            </span>
+
+        </div>
+
+    </section>
+
+
+    <!-- ACTIONS -->
+
+    <div class="preview-actions">
+
+        <button class="secondary-button"
+                onclick="showCustomer()">
+
+            ← Back to History
+
+        </button>
+
+
+        <button class="preview-print-button"
+                onclick="printCurrentPrescription()">
+
+            🖨 Print Prescription
+
+        </button>
+
+    </div>
+
+</main>
+
+
+<!-- =========================
+     TOAST
+========================= -->
+
+<div id="toast"
+     class="toast">
+
+</div>
+
+
+<script type="module" src="script.js"></script>
+
+</body>
+</html>
