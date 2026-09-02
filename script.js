@@ -763,7 +763,7 @@ function searchCustomers() {
 }
 
     displayCustomers(results);
-}
+
 
 
 /* =========================
