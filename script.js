@@ -1648,6 +1648,25 @@ function toggleSign(inputId) {
 
     input.focus();
 }
+window.toggleSign = function(inputId) {
+    const input = document.getElementById(inputId);
+
+    if (!input) {
+        console.log("Input not found:", inputId);
+        return;
+    }
+
+    if (input.value.startsWith("-")) {
+        input.value = input.value.substring(1);
+    } else {
+        input.value = "-" + input.value;
+    }
+
+    input.focus();
+
+    // Trigger input event so the software recognizes the change
+    input.dispatchEvent(new Event("input", { bubbles: true }));
+};
 loadData();
 window.openNewCustomer = openNewCustomer;
 window.goHome = goHome;
